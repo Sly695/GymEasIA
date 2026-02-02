@@ -1,0 +1,802 @@
+{
+  "designSystem": {
+    "name": "GymEasIA Design System",
+    "colors": {
+      "background": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "surface": {
+        "value": "#1A1A1A",
+        "type": "color"
+      },
+      "surfaceLight": {
+        "value": "#2A2A2A",
+        "type": "color"
+      },
+      "accent": {
+        "value": "#D7FF00",
+        "type": "color"
+      },
+      "accentSecondary": {
+        "value": "#CFFF00",
+        "type": "color"
+      },
+      "text": {
+        "value": "#FFFFFF",
+        "type": "color"
+      },
+      "textSecondary": {
+        "value": "#AAAAAA",
+        "type": "color"
+      },
+      "textMuted": {
+        "value": "#666666",
+        "type": "color"
+      },
+      "success": {
+        "value": "#00FF88",
+        "type": "color"
+      },
+      "error": {
+        "value": "#FF4444",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#FFAA00",
+        "type": "color"
+      },
+      "glass": {
+        "value": "rgba(255, 255, 255, 0.1)",
+        "type": "color"
+      },
+      "glassBorder": {
+        "value": "rgba(255, 255, 255, 0.2)",
+        "type": "color"
+      }
+    },
+    "typography": {
+      "h1": {
+        "fontSize": 32,
+        "fontWeight": "Bold",
+        "lineHeight": 40,
+        "color": "#FFFFFF"
+      },
+      "h2": {
+        "fontSize": 24,
+        "fontWeight": "Bold",
+        "lineHeight": 32,
+        "color": "#FFFFFF"
+      },
+      "h3": {
+        "fontSize": 20,
+        "fontWeight": "SemiBold",
+        "lineHeight": 28,
+        "color": "#FFFFFF"
+      },
+      "body": {
+        "fontSize": 16,
+        "fontWeight": "Regular",
+        "lineHeight": 24,
+        "color": "#FFFFFF"
+      },
+      "caption": {
+        "fontSize": 14,
+        "fontWeight": "Regular",
+        "lineHeight": 20,
+        "color": "#AAAAAA"
+      }
+    },
+    "spacing": {
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32
+    },
+    "borderRadius": {
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "round": 9999
+    }
+  },
+  "screens": [
+    {
+      "name": "Login Screen",
+      "width": 375,
+      "height": 812,
+      "backgroundColor": "#000000",
+      "backgroundGradient": ["#000000", "#1A1A1A"],
+      "elements": [
+        {
+          "type": "header",
+          "position": { "x": 0, "y": 200 },
+          "elements": [
+            {
+              "type": "text",
+              "content": "GymEasIA",
+              "style": "h1",
+              "fontSize": 48,
+              "color": "#D7FF00",
+              "alignment": "center"
+            },
+            {
+              "type": "text",
+              "content": "AI-Powered Performance Tracking",
+              "style": "caption",
+              "fontSize": 16,
+              "color": "#AAAAAA",
+              "alignment": "center",
+              "marginTop": 8
+            }
+          ]
+        },
+        {
+          "type": "tabs",
+          "position": { "x": 24, "y": 320 },
+          "width": 327,
+          "height": 48,
+          "backgroundColor": "#1A1A1A",
+          "borderRadius": 8,
+          "tabs": [
+            {
+              "label": "Log In",
+              "active": true,
+              "backgroundColor": "#D7FF00",
+              "textColor": "#000000"
+            },
+            {
+              "label": "Sign Up",
+              "active": false,
+              "backgroundColor": "transparent",
+              "textColor": "#AAAAAA"
+            }
+          ]
+        },
+        {
+          "type": "form",
+          "position": { "x": 24, "y": 400 },
+          "elements": [
+            {
+              "type": "input",
+              "placeholder": "Email",
+              "width": 327,
+              "height": 56,
+              "marginBottom": 16
+            },
+            {
+              "type": "input",
+              "placeholder": "Password",
+              "width": 327,
+              "height": 56,
+              "secureTextEntry": true,
+              "marginBottom": 16
+            },
+            {
+              "type": "link",
+              "content": "Forgot?",
+              "color": "#D7FF00",
+              "alignment": "right",
+              "marginBottom": 16
+            },
+            {
+              "type": "button",
+              "label": "START TRAINING",
+              "variant": "primary",
+              "width": 327,
+              "height": 56,
+              "marginBottom": 24
+            }
+          ]
+        },
+        {
+          "type": "socialButtons",
+          "position": { "x": 159.5, "y": 680 },
+          "elements": [
+            {
+              "type": "button",
+              "icon": "logo-google",
+              "size": 56,
+              "shape": "circle"
+            },
+            {
+              "type": "button",
+              "icon": "logo-facebook",
+              "size": 56,
+              "shape": "circle",
+              "marginLeft": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dashboard Screen",
+      "width": 375,
+      "height": 812,
+      "backgroundColor": "#000000",
+      "backgroundGradient": ["#000000", "#1A1A1A"],
+      "elements": [
+        {
+          "type": "header",
+          "position": { "x": 24, "y": 60 },
+          "elements": [
+            {
+              "type": "text",
+              "content": "GymEasIA",
+              "style": "h1",
+              "marginBottom": 4
+            },
+            {
+              "type": "text",
+              "content": "Welcome back, Athlete",
+              "style": "body",
+              "color": "#AAAAAA"
+            }
+          ]
+        },
+        {
+          "type": "metrics",
+          "position": { "x": 24, "y": 180 },
+          "width": 327,
+          "elements": [
+            {
+              "type": "metricCard",
+              "icon": "flame",
+              "value": "1250",
+              "label": "Calories burned",
+              "width": 103
+            },
+            {
+              "type": "metricCard",
+              "icon": "barbell",
+              "value": "5",
+              "label": "Workouts this week",
+              "width": 103,
+              "marginLeft": 16
+            },
+            {
+              "type": "metricCard",
+              "icon": "repeat",
+              "value": "60",
+              "label": "Total reps",
+              "width": 103,
+              "marginLeft": 16
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Recent History",
+          "position": { "x": 24, "y": 300 },
+          "elements": [
+            {
+              "type": "historyCard",
+              "exercise": "Squat",
+              "type": "Full Body • High Intensity",
+              "reps": 12,
+              "marginBottom": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Camera Screen",
+      "width": 375,
+      "height": 812,
+      "backgroundColor": "#000000",
+      "elements": [
+        {
+          "type": "camera",
+          "fullScreen": true
+        },
+        {
+          "type": "overlay",
+          "gradient": ["rgba(0,0,0,0.3)", "transparent", "rgba(0,0,0,0.7)"],
+          "elements": [
+            {
+              "type": "topOverlay",
+              "position": { "x": 16, "y": 50 },
+              "elements": [
+                {
+                  "type": "headerRow",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "icon": "arrow-back",
+                      "size": 40,
+                      "shape": "circle",
+                      "backgroundColor": "rgba(255, 255, 255, 0.1)"
+                    },
+                    {
+                      "type": "badge",
+                      "content": "RepNet AI - Auto Detection",
+                      "backgroundColor": "rgba(255, 255, 255, 0.1)",
+                      "borderColor": "#D7FF00",
+                      "icon": "pulse"
+                    },
+                    {
+                      "type": "button",
+                      "icon": "camera-reverse",
+                      "size": 40,
+                      "shape": "circle",
+                      "backgroundColor": "rgba(255, 255, 255, 0.1)"
+                    }
+                  ]
+                },
+                {
+                  "type": "instruction",
+                  "content": "Position your full body in frame\nAI will detect your exercise automatically",
+                  "color": "#AAAAAA",
+                  "alignment": "center"
+                }
+              ]
+            },
+            {
+              "type": "bottomOverlay",
+              "position": { "x": 24, "y": 738 },
+              "elements": [
+                {
+                  "type": "button",
+                  "icon": "images",
+                  "size": 50,
+                  "shape": "circle",
+                  "backgroundColor": "rgba(255, 255, 255, 0.1)"
+                },
+                {
+                  "type": "recordButton",
+                  "size": 90,
+                  "innerSize": 70,
+                  "backgroundColor": "#D7FF00",
+                  "borderColor": "#FFFFFF",
+                  "borderWidth": 4
+                },
+                {
+                  "type": "placeholder",
+                  "size": 50
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "name": "Recording",
+          "elements": [
+            {
+              "type": "recordingIndicator",
+              "content": "0:45 / 1:00",
+              "backgroundColor": "rgba(255, 68, 68, 0.4)",
+              "borderColor": "#FF4444"
+            },
+            {
+              "type": "recordButton",
+              "state": "active",
+              "size": 50,
+              "borderRadius": 8,
+              "backgroundColor": "#FF4444"
+            }
+          ]
+        },
+        {
+          "name": "Preview",
+          "elements": [
+            {
+              "type": "video",
+              "fullScreen": true
+            },
+            {
+              "type": "overlay",
+              "gradient": ["transparent", "rgba(0,0,0,0.9)"],
+              "elements": [
+                {
+                  "type": "header",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "icon": "close",
+                      "size": 40
+                    },
+                    {
+                      "type": "text",
+                      "content": "Review Video",
+                      "style": "h3"
+                    },
+                    {
+                      "type": "placeholder",
+                      "width": 40
+                    }
+                  ]
+                },
+                {
+                  "type": "bottomActions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "label": "Retry",
+                      "icon": "refresh",
+                      "variant": "secondary"
+                    },
+                    {
+                      "type": "button",
+                      "label": "Analyze with AI",
+                      "icon": "checkmark-circle",
+                      "variant": "primary"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Analyze Screen",
+      "width": 375,
+      "height": 812,
+      "backgroundColor": "#000000",
+      "backgroundGradient": ["#000000", "#1A1A1A"],
+      "elements": [
+        {
+          "type": "header",
+          "position": { "x": 24, "y": 60 },
+          "elements": [
+            {
+              "type": "button",
+              "icon": "arrow-back",
+              "size": 24
+            },
+            {
+              "type": "text",
+              "content": "Analysis",
+              "style": "h2"
+            },
+            {
+              "type": "placeholder",
+              "width": 24
+            }
+          ]
+        },
+        {
+          "type": "results",
+          "position": { "x": 24, "y": 140 },
+          "elements": [
+            {
+              "type": "resultCard",
+              "label": "Reps",
+              "value": "12",
+              "width": 103
+            },
+            {
+              "type": "resultCard",
+              "label": "Load",
+              "value": "--",
+              "note": "Mock data",
+              "width": 103,
+              "marginLeft": 16
+            },
+            {
+              "type": "resultCard",
+              "label": "Score",
+              "value": "85%",
+              "width": 103,
+              "marginLeft": 16
+            }
+          ]
+        },
+        {
+          "type": "analysisCard",
+          "position": { "x": 24, "y": 280 },
+          "variant": "glass",
+          "elements": [
+            {
+              "type": "text",
+              "content": "AI Analysis",
+              "style": "h3",
+              "marginBottom": 16
+            },
+            {
+              "type": "text",
+              "content": "Your form looks good overall. Maintain proper depth and control throughout the movement.",
+              "style": "body",
+              "lineHeight": 24,
+              "marginBottom": 16
+            },
+            {
+              "type": "tags",
+              "elements": [
+                { "label": "Hypertrophy" },
+                { "label": "Tempo" },
+                { "label": "Form Check" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "progressCard",
+          "position": { "x": 24, "y": 480 },
+          "elements": [
+            {
+              "type": "text",
+              "content": "Progression",
+              "style": "h3",
+              "marginBottom": 16
+            },
+            {
+              "type": "progressBar",
+              "width": 327,
+              "height": 8,
+              "fill": 85,
+              "backgroundColor": "#2A2A2A",
+              "fillColor": "#D7FF00"
+            },
+            {
+              "type": "text",
+              "content": "Confidence: 85%",
+              "style": "caption",
+              "marginTop": 8
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "name": "Processing",
+          "elements": [
+            {
+              "type": "card",
+              "centered": true,
+              "elements": [
+                {
+                  "type": "spinner",
+                  "size": "large",
+                  "color": "#D7FF00"
+                },
+                {
+                  "type": "text",
+                  "content": "AI is analyzing your video...",
+                  "style": "h3",
+                  "marginTop": 16
+                },
+                {
+                  "type": "text",
+                  "content": "This may take a few seconds",
+                  "style": "caption"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "History Screen",
+      "width": 375,
+      "height": 812,
+      "backgroundColor": "#000000",
+      "backgroundGradient": ["#000000", "#1A1A1A"],
+      "elements": [
+        {
+          "type": "header",
+          "position": { "x": 24, "y": 60 },
+          "elements": [
+            {
+              "type": "text",
+              "content": "History",
+              "style": "h1"
+            }
+          ]
+        },
+        {
+          "type": "videoList",
+          "position": { "x": 24, "y": 140 },
+          "elements": [
+            {
+              "type": "videoCard",
+              "elements": [
+                {
+                  "type": "left",
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "name": "videocam",
+                      "size": 24,
+                      "color": "#D7FF00"
+                    },
+                    {
+                      "type": "info",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "content": "video-1767986572010.mov",
+                          "style": "body"
+                        },
+                        {
+                          "type": "text",
+                          "content": "01/15/2024",
+                          "style": "caption"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "right",
+                  "elements": [
+                    {
+                      "type": "statusBadge",
+                      "status": "DONE",
+                      "backgroundColor": "rgba(0, 255, 136, 0.2)",
+                      "textColor": "#00FF88"
+                    },
+                    {
+                      "type": "icon",
+                      "name": "chevron-forward",
+                      "size": 20,
+                      "color": "#AAAAAA"
+                    }
+                  ]
+                }
+              ],
+              "marginBottom": 16
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "name": "Empty",
+          "elements": [
+            {
+              "type": "card",
+              "centered": true,
+              "elements": [
+                {
+                  "type": "icon",
+                  "name": "time-outline",
+                  "size": 64,
+                  "color": "#666666"
+                },
+                {
+                  "type": "text",
+                  "content": "No workouts yet",
+                  "style": "h3",
+                  "marginTop": 16
+                },
+                {
+                  "type": "text",
+                  "content": "Start recording to see your history",
+                  "style": "caption"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "variants": [
+        {
+          "name": "Primary",
+          "height": 56,
+          "borderRadius": 16,
+          "backgroundGradient": ["#D7FF00", "#CFFF00"],
+          "textColor": "#000000",
+          "fontWeight": "Bold",
+          "fontSize": 20
+        },
+        {
+          "name": "Secondary",
+          "height": 56,
+          "borderRadius": 16,
+          "backgroundColor": "transparent",
+          "textColor": "#D7FF00",
+          "fontWeight": "Bold",
+          "fontSize": 20
+        },
+        {
+          "name": "Outline",
+          "height": 56,
+          "borderRadius": 16,
+          "backgroundColor": "transparent",
+          "borderWidth": 2,
+          "borderColor": "#D7FF00",
+          "textColor": "#D7FF00",
+          "fontWeight": "Bold",
+          "fontSize": 20
+        }
+      ],
+      "states": ["default", "pressed", "disabled", "loading"]
+    },
+    {
+      "name": "Input",
+      "height": 56,
+      "borderRadius": 16,
+      "backgroundColor": "#1A1A1A",
+      "borderWidth": 1,
+      "borderColor": "rgba(255, 255, 255, 0.2)",
+      "paddingHorizontal": 16,
+      "fontSize": 16,
+      "textColor": "#FFFFFF",
+      "placeholderColor": "#666666"
+    },
+    {
+      "name": "Card",
+      "borderRadius": 24,
+      "padding": 16,
+      "backgroundColor": "#1A1A1A",
+      "borderWidth": 1,
+      "borderColor": "rgba(255, 255, 255, 0.2)",
+      "variants": [
+        {
+          "name": "Default",
+          "backgroundColor": "#1A1A1A"
+        },
+        {
+          "name": "Glass",
+          "backgroundColor": "rgba(255, 255, 255, 0.1)",
+          "blur": true
+        }
+      ]
+    },
+    {
+      "name": "MetricCard",
+      "borderRadius": 24,
+      "padding": 16,
+      "backgroundColor": "#1A1A1A",
+      "alignment": "center",
+      "elements": [
+        {
+          "type": "icon",
+          "marginBottom": 8
+        },
+        {
+          "type": "value",
+          "style": "h2",
+          "color": "#D7FF00",
+          "marginBottom": 4
+        },
+        {
+          "type": "label",
+          "style": "caption",
+          "alignment": "center"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "bottomTabBar": {
+      "height": 70,
+      "backgroundColor": "#1A1A1A",
+      "borderTopWidth": 1,
+      "borderTopColor": "rgba(255, 255, 255, 0.2)",
+      "paddingTop": 10,
+      "paddingBottom": 10,
+      "activeColor": "#D7FF00",
+      "inactiveColor": "#666666",
+      "tabs": [
+        {
+          "name": "Dashboard",
+          "icon": "home"
+        },
+        {
+          "name": "Camera",
+          "icon": "camera",
+          "hideLabel": true
+        },
+        {
+          "name": "History",
+          "icon": "time"
+        }
+      ]
+    }
+  }
+}

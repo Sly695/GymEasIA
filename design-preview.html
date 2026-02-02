@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymEasIA - Design Specifications Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #FFFFFF;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #D7FF00;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #FFFFFF;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #D7FF00;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #D7FF00;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .section {
+            background: #1A1A1A;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .color-item {
+            background: #2A2A2A;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .color-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .color-value {
+            font-size: 12px;
+            color: #AAAAAA;
+            font-family: 'Courier New', monospace;
+        }
+
+        .typography-sample {
+            margin: 16px 0;
+            padding: 16px;
+            background: #2A2A2A;
+            border-radius: 8px;
+        }
+
+        .typography-sample h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .typography-sample h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            border: none;
+            padding: 0;
+        }
+
+        .typography-sample h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .typography-sample .body {
+            font-size: 16px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .typography-sample .caption {
+            font-size: 14px;
+            color: #AAAAAA;
+        }
+
+        .screen-preview {
+            background: #000000;
+            border-radius: 24px;
+            padding: 24px;
+            margin: 24px 0;
+            border: 2px solid #D7FF00;
+        }
+
+        .screen-frame {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(180deg, #000000 0%, #1A1A1A 100%);
+            border-radius: 24px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .component-demo {
+            background: #2A2A2A;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+
+        .button-demo {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #D7FF00 0%, #CFFF00 100%);
+            color: #000000;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #D7FF00;
+            border: 2px solid #D7FF00;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #D7FF00;
+            border: 2px solid #D7FF00;
+        }
+
+        .input-demo {
+            width: 100%;
+            height: 56px;
+            background: #1A1A1A;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 0 16px;
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-top: 16px;
+        }
+
+        .input-demo::placeholder {
+            color: #666666;
+        }
+
+        .card-demo {
+            background: #1A1A1A;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .metric-card-demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1A1A1A;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 16px;
+            min-width: 100px;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #D7FF00;
+            margin: 8px 0;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #AAAAAA;
+            text-align: center;
+        }
+
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 8px 0;
+        }
+
+        .spacing-box {
+            background: #D7FF00;
+            border-radius: 4px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 4px;
+        }
+
+        .badge-success {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00FF88;
+            border: 1px solid #00FF88;
+        }
+
+        .badge-error {
+            background: rgba(255, 68, 68, 0.2);
+            color: #FF4444;
+            border: 1px solid #FF4444;
+        }
+
+        .badge-warning {
+            background: rgba(255, 170, 0, 0.2);
+            color: #FFAA00;
+            border: 1px solid #FFAA00;
+        }
+
+        code {
+            background: #2A2A2A;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #D7FF00;
+        }
+
+        .info-box {
+            background: rgba(215, 255, 0, 0.1);
+            border: 1px solid #D7FF00;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 24px 0;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GymEasIA</h1>
+        <p style="color: #AAAAAA; font-size: 16px; margin-bottom: 48px;">Spécifications de Design - Application Mobile</p>
+
+        <div class="info-box">
+            <h3>📋 Documentation Complète</h3>
+            <p>Consultez <code>DESIGN_SPECIFICATIONS.md</code> pour la documentation complète et <code>FIGMA_IMPORT_GUIDE.md</code> pour le guide d'import Figma.</p>
+        </div>
+
+        <h2>Palette de Couleurs</h2>
+        <div class="section">
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #000000;"></div>
+                    <div class="color-name">Background</div>
+                    <div class="color-value">#000000</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #1A1A1A;"></div>
+                    <div class="color-name">Surface</div>
+                    <div class="color-value">#1A1A1A</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #2A2A2A;"></div>
+                    <div class="color-name">Surface Light</div>
+                    <div class="color-value">#2A2A2A</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #D7FF00;"></div>
+                    <div class="color-name">Accent</div>
+                    <div class="color-value">#D7FF00</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #CFFF00;"></div>
+                    <div class="color-name">Accent Secondary</div>
+                    <div class="color-value">#CFFF00</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FFFFFF;"></div>
+                    <div class="color-name">Text</div>
+                    <div class="color-value">#FFFFFF</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #AAAAAA;"></div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-value">#AAAAAA</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #666666;"></div>
+                    <div class="color-name">Text Muted</div>
+                    <div class="color-value">#666666</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #00FF88;"></div>
+                    <div class="color-name">Success</div>
+                    <div class="color-value">#00FF88</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF4444;"></div>
+                    <div class="color-name">Error</div>
+                    <div class="color-value">#FF4444</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FFAA00;"></div>
+                    <div class="color-name">Warning</div>
+                    <div class="color-value">#FFAA00</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);"></div>
+                    <div class="color-name">Glass</div>
+                    <div class="color-value">rgba(255,255,255,0.1)</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Typographie</h2>
+        <div class="section">
+            <div class="typography-sample">
+                <h1>Heading 1 - 32px Bold</h1>
+                <h2>Heading 2 - 24px Bold</h2>
+                <h3>Heading 3 - 20px SemiBold</h3>
+                <div class="body">Body - 16px Regular</div>
+                <div class="caption">Caption - 14px Regular (Secondary Text)</div>
+            </div>
+        </div>
+
+        <h2>Composants</h2>
+        
+        <div class="section">
+            <h3>Button</h3>
+            <div class="button-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-outline">Outline Button</button>
+            </div>
+            <p style="margin-top: 16px; color: #AAAAAA;">
+                Hauteur: 56px | Border Radius: 16px | Primary utilise un gradient accent
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Input</h3>
+            <input type="text" class="input-demo" placeholder="Email" />
+            <p style="margin-top: 16px; color: #AAAAAA;">
+                Hauteur: 56px | Border Radius: 16px | Fond: #1A1A1A | Bordure: rgba(255,255,255,0.2)
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Card</h3>
+            <div class="card-demo">
+                <h3 style="margin-top: 0;">Card Title</h3>
+                <p>Card content goes here. This is a default card with border radius 24px and padding 16px.</p>
+            </div>
+            <p style="margin-top: 16px; color: #AAAAAA;">
+                Border Radius: 24px | Padding: 16px | Fond: #1A1A1A | Bordure: rgba(255,255,255,0.2)
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>MetricCard</h3>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <div class="metric-card-demo">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔥</div>
+                    <div class="metric-value">1250</div>
+                    <div class="metric-label">Calories burned</div>
+                </div>
+                <div class="metric-card-demo">
+                    <div style="font-size: 24px; margin-bottom: 8px;">💪</div>
+                    <div class="metric-value">5</div>
+                    <div class="metric-label">Workouts this week</div>
+                </div>
+                <div class="metric-card-demo">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
+                    <div class="metric-value">60</div>
+                    <div class="metric-label">Total reps</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Badges</h3>
+            <span class="badge badge-success">DONE</span>
+            <span class="badge badge-warning">PROCESSING</span>
+            <span class="badge badge-error">FAILED</span>
+        </div>
+
+        <h2>Espacements</h2>
+        <div class="section">
+            <div class="spacing-demo">
+                <span>XS:</span>
+                <div class="spacing-box" style="width: 4px; height: 20px;"></div>
+                <code>4px</code>
+            </div>
+            <div class="spacing-demo">
+                <span>SM:</span>
+                <div class="spacing-box" style="width: 8px; height: 20px;"></div>
+                <code>8px</code>
+            </div>
+            <div class="spacing-demo">
+                <span>MD:</span>
+                <div class="spacing-box" style="width: 16px; height: 20px;"></div>
+                <code>16px</code>
+            </div>
+            <div class="spacing-demo">
+                <span>LG:</span>
+                <div class="spacing-box" style="width: 24px; height: 20px;"></div>
+                <code>24px</code>
+            </div>
+            <div class="spacing-demo">
+                <span>XL:</span>
+                <div class="spacing-box" style="width: 32px; height: 20px;"></div>
+                <code>32px</code>
+            </div>
+        </div>
+
+        <h2>Écrans</h2>
+        
+        <div class="section">
+            <h3>1. Login Screen</h3>
+            <div class="screen-preview">
+                <div class="screen-frame">
+                    <div style="padding: 200px 24px 0; text-align: center;">
+                        <div style="font-size: 48px; font-weight: bold; color: #D7FF00; margin-bottom: 8px;">GymEasIA</div>
+                        <div style="font-size: 16px; color: #AAAAAA; margin-bottom: 48px;">AI-Powered Performance Tracking</div>
+                        <div style="background: #1A1A1A; border-radius: 8px; padding: 4px; display: flex; margin-bottom: 24px;">
+                            <div style="flex: 1; background: #D7FF00; padding: 8px; border-radius: 8px; text-align: center; color: #000; font-weight: bold;">Log In</div>
+                            <div style="flex: 1; padding: 8px; text-align: center; color: #AAAAAA;">Sign Up</div>
+                        </div>
+                        <div style="background: #1A1A1A; height: 56px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 16px; display: flex; align-items: center; padding: 0 16px; color: #666;">Email</div>
+                        <div style="background: #1A1A1A; height: 56px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 16px; display: flex; align-items: center; padding: 0 16px; color: #666;">Password</div>
+                        <div style="background: linear-gradient(90deg, #D7FF00 0%, #CFFF00 100%); height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; margin-bottom: 24px;">START TRAINING</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>2. Dashboard Screen</h3>
+            <div class="screen-preview">
+                <div class="screen-frame">
+                    <div style="padding: 60px 24px 0;">
+                        <div style="font-size: 32px; font-weight: bold; margin-bottom: 4px;">GymEasIA</div>
+                        <div style="font-size: 16px; color: #AAAAAA; margin-bottom: 32px;">Welcome back, Athlete</div>
+                        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                            <div class="metric-card-demo" style="flex: 1;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🔥</div>
+                                <div class="metric-value">1250</div>
+                                <div class="metric-label">Calories burned</div>
+                            </div>
+                            <div class="metric-card-demo" style="flex: 1;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">💪</div>
+                                <div class="metric-value">5</div>
+                                <div class="metric-label">Workouts this week</div>
+                            </div>
+                            <div class="metric-card-demo" style="flex: 1;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🔄</div>
+                                <div class="metric-value">60</div>
+                                <div class="metric-label">Total reps</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 16px;">Recent History</div>
+                        <div class="card-demo">
+                            <div style="font-size: 20px; font-weight: 600; margin-bottom: 4px;">Squat</div>
+                            <div style="font-size: 14px; color: #AAAAAA; margin-bottom: 8px;">Full Body • High Intensity</div>
+                            <div style="width: 60px; height: 60px; background: #D7FF00; border-radius: 30px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 24px; margin-top: 8px;">12</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>3. Camera Screen</h3>
+            <div class="screen-preview">
+                <div class="screen-frame" style="background: #000;">
+                    <div style="position: absolute; top: 50px; left: 16px; right: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);"></div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 4px 16px; border-radius: 9999px; border: 1px solid #D7FF00; color: #D7FF00; font-size: 12px;">RepNet AI - Auto Detection</div>
+                            <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);"></div>
+                        </div>
+                        <div style="text-align: center; color: #AAAAAA; font-size: 14px;">Position your full body in frame<br>AI will detect your exercise automatically</div>
+                    </div>
+                    <div style="position: absolute; bottom: 40px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 25px; border: 2px solid rgba(255,255,255,0.2);"></div>
+                        <div style="width: 90px; height: 90px; background: rgba(255,255,255,0.3); border-radius: 45px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 70px; height: 70px; background: #D7FF00; border-radius: 35px; border: 4px solid #000;"></div>
+                        </div>
+                        <div style="width: 50px; height: 50px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>4. Analyze Screen</h3>
+            <div class="screen-preview">
+                <div class="screen-frame">
+                    <div style="padding: 60px 24px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                            <div style="width: 24px; height: 24px;"></div>
+                            <div style="font-size: 24px; font-weight: bold;">Analysis</div>
+                            <div style="width: 24px;"></div>
+                        </div>
+                        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                            <div class="card-demo" style="flex: 1; text-align: center;">
+                                <div style="font-size: 14px; color: #AAAAAA; margin-bottom: 4px;">Reps</div>
+                                <div style="font-size: 32px; font-weight: bold; color: #D7FF00;">12</div>
+                            </div>
+                            <div class="card-demo" style="flex: 1; text-align: center;">
+                                <div style="font-size: 14px; color: #AAAAAA; margin-bottom: 4px;">Load</div>
+                                <div style="font-size: 32px; font-weight: bold; color: #D7FF00;">--</div>
+                            </div>
+                            <div class="card-demo" style="flex: 1; text-align: center;">
+                                <div style="font-size: 14px; color: #AAAAAA; margin-bottom: 4px;">Score</div>
+                                <div style="font-size: 32px; font-weight: bold; color: #D7FF00;">85%</div>
+                            </div>
+                        </div>
+                        <div class="card-demo" style="background: rgba(255,255,255,0.1);">
+                            <div style="font-size: 20px; font-weight: 600; margin-bottom: 16px;">AI Analysis</div>
+                            <div style="font-size: 16px; line-height: 24px; margin-bottom: 16px;">Your form looks good overall. Maintain proper depth and control throughout the movement.</div>
+                            <div>
+                                <span class="badge badge-success">Hypertrophy</span>
+                                <span class="badge badge-success">Tempo</span>
+                                <span class="badge badge-success">Form Check</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>5. History Screen</h3>
+            <div class="screen-preview">
+                <div class="screen-frame">
+                    <div style="padding: 60px 24px 0;">
+                        <div style="font-size: 32px; font-weight: bold; margin-bottom: 24px;">History</div>
+                        <div class="card-demo">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <div style="width: 24px; height: 24px; background: #D7FF00; border-radius: 4px;"></div>
+                                    <div>
+                                        <div style="font-size: 16px; margin-bottom: 4px;">video-1767986572010.mov</div>
+                                        <div style="font-size: 14px; color: #AAAAAA;">01/15/2024</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="badge badge-success">DONE</span>
+                                    <div style="width: 20px; height: 20px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 48px;">
+            <h3>📤 Export Figma</h3>
+            <p>Utilisez le fichier <code>figma-specifications.json</code> et suivez le guide dans <code>FIGMA_IMPORT_GUIDE.md</code> pour créer les maquettes dans Figma.</p>
+            <p style="margin-top: 8px;">Dimensions recommandées: 375x812px (iPhone standard) ou 750x1624px (@2x)</p>
+        </div>
+    </div>
+</body>
+</html>

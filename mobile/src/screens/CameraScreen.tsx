@@ -31,6 +31,7 @@ const CameraScreen = ({ navigation }: any) => {
   const cameraRef = useRef<CameraView>(null);
   const videoRef = useRef<Video>(null);
   const recordingTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const recordingPromiseRef = useRef<Promise<{ uri: string }> | null>(null);
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
@@ -39,6 +40,11 @@ const CameraScreen = ({ navigation }: any) => {
       requestPermission();
     }
   }, [permission]);
+
+  // Réinitialiser cameraReady quand on change de face de caméra
+  useEffect(() => {
+    setCameraReady(false);
+  }, [facing]);
 
   // Animation du bouton pendant l'enregistrement
   useEffect(() => {
@@ -117,9 +123,6 @@ const CameraScreen = ({ navigation }: any) => {
     }
 
     try {
-      // Attendre un peu plus pour être sûr que la caméra est vraiment prête
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
       // Vérifier à nouveau que la caméra est toujours disponible
       if (!cameraRef.current) {
         throw new Error('Camera reference lost');
@@ -128,44 +131,49 @@ const CameraScreen = ({ navigation }: any) => {
       setRecording(true);
       setRecordingDuration(0);
       
-      const recordingResult = await cameraRef.current.recordAsync({
+      // recordAsync() démarre l'enregistrement et retourne une promesse
+      // qui se résout avec l'URI quand stopRecording() est appelé
+      recordingPromiseRef.current = cameraRef.current.recordAsync({
         maxDuration: MAX_RECORDING_DURATION,
+        quality: '720p',
       });
 
-      if (recordingResult && recordingResult.uri) {
-        setPreviewUri(recordingResult.uri);
-        setRecording(false);
-      }
+      // La promesse se résoudra quand stopRecording() est appelé
+      recordingPromiseRef.current
+        .then((recordingResult) => {
+          if (recordingResult && recordingResult.uri) {
+            setPreviewUri(recordingResult.uri);
+            setRecording(false);
+          } else {
+            setRecording(false);
+          }
+          recordingPromiseRef.current = null;
+        })
+        .catch((error: any) => {
+          console.error('Recording promise error:', error);
+          setRecording(false);
+          recordingPromiseRef.current = null;
+          if (error.message && !error.message.includes('Recording stopped')) {
+            Alert.alert('Error', error.message || 'Failed to record video');
+          }
+        });
+
     } catch (error: any) {
       console.error('Recording error:', error);
       setRecording(false);
+      recordingPromiseRef.current = null;
       
-      // Si l'erreur est "Camera is not ready yet", réessayer automatiquement
       if (error.message && error.message.includes('not ready')) {
-        console.log('Camera not ready, retrying in 2 seconds...');
-        setTimeout(async () => {
+        // Réessayer après un court délai
+        console.log('Camera not ready, retrying in 1 second...');
+        setTimeout(() => {
           if (cameraReady && !recording && cameraRef.current) {
             console.log('Auto-retrying recording...');
-            try {
-              await new Promise(resolve => setTimeout(resolve, 800));
-              setRecording(true);
-              setRecordingDuration(0);
-              const recordingResult = await cameraRef.current.recordAsync({
-                maxDuration: MAX_RECORDING_DURATION,
-              });
-              if (recordingResult && recordingResult.uri) {
-                setPreviewUri(recordingResult.uri);
-                setRecording(false);
-              }
-            } catch (retryError: any) {
-              console.error('Retry recording error:', retryError);
-              setRecording(false);
-              Alert.alert('Error', 'Failed to start recording. Please wait a moment and try again.');
-            }
+            handleStartRecording();
           }
-        }, 2000);
+        }, 1000);
       } else {
-        Alert.alert('Error', error.message || 'Failed to record video');
+        Alert.alert('Error', error.message || 'Failed to start recording');
       }
     }
   };
@@ -174,10 +182,11 @@ const CameraScreen = ({ navigation }: any) => {
     if (cameraRef.current && recording) {
       try {
         await cameraRef.current.stopRecording();
-        setRecording(false);
+        // L'état sera mis à jour par la promesse de recordAsync qui se résoudra maintenant
       } catch (error: any) {
         console.error('Stop recording error:', error);
         setRecording(false);
+        recordingPromiseRef.current = null;
       }
     }
   };
@@ -325,13 +334,17 @@ const CameraScreen = ({ navigation }: any) => {
         ref={cameraRef}
         style={styles.camera}
         facing={facing}
+        mode="video"
         onCameraReady={() => {
           console.log('Camera ready callback fired');
-          // Délai plus long pour s'assurer que la caméra est vraiment prête pour l'enregistrement
-          setTimeout(() => {
-            setCameraReady(true);
-            console.log('Camera ready state set to true');
-          }, 2000);
+          // Utiliser requestAnimationFrame pour s'assurer que la caméra est vraiment prête
+          requestAnimationFrame(() => {
+            // Attendre un délai supplémentaire pour que la caméra soit complètement initialisée
+            setTimeout(() => {
+              setCameraReady(true);
+              console.log('Camera ready state set to true');
+            }, 500);
+          });
         }}
       />
       {/* Overlay avec positionnement absolu */}
